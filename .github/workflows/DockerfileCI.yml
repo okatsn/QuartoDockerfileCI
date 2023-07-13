@@ -11,8 +11,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Hello world action step
         id: hello
-        uses: okatsn/QuartoDockerfileCI
-        # See https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action#example-using-a-public-action
+        uses: ./
+        # See [Using a private action](https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action#example-using-a-private-action)
         with:
           who-to-greet: "Mona the Octocat"
       # Use the output from the `hello` step
