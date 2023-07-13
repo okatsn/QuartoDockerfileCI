@@ -1,0 +1,149 @@
+---
+title: "Hello Quarto!"
+jupyter: julia-1.9
+format: revealjs
+---
+
+## Hello world
+
+- [Quarto Tutorial](https://quarto.org/docs/get-started/hello/vscode.html)
+- [A year of using Quarto with Julia](https://www.paltmeyer.com/blog/posts/tips-and-tricks-for-using-quarto-with-julia/) and [An excellent Quarto slide for this post](https://www.paltmeyer.com/content/talks/posts/2022-julia-eindhoven/presentation.html#/title-slide). Also see [Julia and Quarto: a match made in heaven?](https://www.paltmeyer.com/blog/posts/julia-and-quarto-a-match-made-in-heaven/)
+- [Official example Quarto presentation](https://quarto.org/docs/presentations/)
+- [Quarto using Julia](https://quarto.org/docs/computations/julia.html)
+
+1+1 = 2
+
+
+
+```{julia}
+using Pkg
+Pkg.status()
+```
+
+## Scrollable slide {.scrollable}
+
+See https://quarto.org/docs/presentations/revealjs/#content-overflow
+
+- Hello world!
+- Hello world!
+- Hello world!
+- Hello world!
+- Hello world!
+- Hello world!
+- Hello world!
+- Hello world!
+- Hello world!
+- Hello world!
+- Hello world!
+- Hello world!
+
+## Scrollable columns in slide
+
+
+<div class="columns">
+  <div class="column scrollable">
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Scroll Down
+    Image with indent is not displayed correctly!
+    <img src="about_twaiswcf/Fig_site_ncutower.png" alt="Image Description">
+  <img src="about_twaiswcf/Fig_site_ncutower.png" alt="Image Description">
+  </div>
+  <div class="column scrollable">
+    Right Column is not scrollable 😢
+    ![](about_twaiswcf/Fig_site_ncutower.png) # ⬅️ (incorrect indent)
+  ![](about_twaiswcf/Fig_site_ncutower.png)
+  ![](about_twaiswcf/Fig_site_ncutower.png)
+  ![](about_twaiswcf/Fig_site_ncutower.png)
+  ![](about_twaiswcf/Fig_site_ncutower.png)
+  </div>
+</div>
+
+<style>
+.scrollable {
+  overflow-y: scroll;
+  max-height: 800; /* Adjust the height as needed */
+}
+</style>
+
+## Multiple columns
+
+:::: {.columns}
+
+::: {.column width="40%"}
+Left column
+
+- item 1
+- item 2
+:::
+
+::: {.column width="60%"}
+Right column
+
+- item 1
+- item 2
+:::
+
+::::
+
+
+## Aside
+
+::: aside
+Some additional commentary of more peripheral interest. See https://quarto.org/docs/presentations/revealjs/#asides-footnotes
+:::
+
+## Callout
+
+https://quarto.org/docs/authoring/callouts.html
+
+::: {.callout-note}
+Note that there are five types of callouts, including:
+`note`, `warning`, `important`, `tip`, and `caution`.
+:::
+
+!!! note ""
+    This do not work
+
+## A good [demo](https://quarto.org/docs/presentations/revealjs/demo/)
+
+[Source code](https://github.com/quarto-dev/quarto-web/blob/main/docs/presentations/revealjs/demo/index.qmd)
+
+## Reference
+
+[Revealjs Options](https://quarto.org/docs/reference/formats/presentations/revealjs.html)
+
+## Article Layout
+
+[Options Reference](https://quarto.org/docs/authoring/article-layout.html#options-reference)
+
+[Available Columns](https://quarto.org/docs/authoring/article-layout.html#available-columns)
+
+- Setting Columns controls the space/overflow of your contents.
+- [Body Column]https://quarto.org/docs/authoring/article-layout.html#body-column
+- [Page Column]https://quarto.org/docs/authoring/article-layout.html#page-column
+
+
+[Global Options](https://quarto.org/docs/authoring/article-layout.html#global-options)
+
+
+[Margin Content](https://quarto.org/docs/authoring/article-layout.html#margin-content)
+
+- place content in the right!
