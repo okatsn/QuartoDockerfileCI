@@ -5,19 +5,17 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
+    container: okatsn/my-quarto-space # https://yonatankra.com/2-ways-to-use-your-docker-image-in-github-actions/
     name: A job to say hello
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: okatsn/in-my-quarto-space@main
-        # See https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action#example-using-a-public-action
-      # Use the output from the `hello` step
+      - name: Make IJulia available for quarto
+        run: |
+          julia --project=@. -e 'using Pkg; Pkg.instantiate(); println("Current directory: $(pwd())"); Pkg.status()'
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Julia run
+      - name: Julia run at checked out directory
         run: julia --project=@. -e 'show(pwd())'
       - name: Quarto render
         run: |
-          julia --project=@. -e 'using Pkg; Pkg.instantiate(); Pkg.status()'
           quarto render hello/hello.qmd
           ls -la hello
