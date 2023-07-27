@@ -13,7 +13,9 @@ jobs:
       #     julia --project=@. -e 'using Pkg; Pkg.instantiate(); println("Current directory: $(pwd())"); Pkg.status()'
       # # I encountered a ERROR: IOError: mkdir("/github/home/.julia"; mode=0o777): permission denied (EACCES)
       - name: Julia run at startup directory
-        run: julia --project=@. -e 'show(pwd())'
+        run: |
+          julia --project=@. -e 'show(pwd())'
+          ls -la
       - name: Checkout
         uses: actions/checkout@v3
       - name: Julia run at checked out directory
