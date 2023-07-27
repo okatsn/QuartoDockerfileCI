@@ -12,12 +12,12 @@ jobs:
         uses: okatsn/in-my-quarto-space@main
         # See https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action#example-using-a-public-action
       # Use the output from the `hello` step
-      - name: Julia run
-        run: julia --project=@. -e 'pwd()'
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Julia run
+        run: julia --project=@. -e 'show(pwd())'
       - name: Quarto render
         run: |
-          echo "quarto rendering..."
+          julia --project=@. -e 'using Pkg; Pkg.instantiate(); Pkg.status()'
           quarto render hello/hello.qmd
           ls -la hello
