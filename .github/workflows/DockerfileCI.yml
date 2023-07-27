@@ -2,11 +2,14 @@ name: QuartoDockerGoGo
 
 on: [push]
 
+# See [Running jobs in a container](https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container) and
+# [2 Ways to Use Your Own Docker Image in Github Actions](https://yonatankra.com/2-ways-to-use-your-docker-image-in-github-actions/)
+
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     container:
-      image: okatsn/my-quarto-space # https://yonatankra.com/2-ways-to-use-your-docker-image-in-github-actions/
+      image: okatsn/my-quarto-space
       options: --user root
     name: A job to say hello
     steps:
@@ -18,11 +21,15 @@ jobs:
         run: |
           julia --project=@. -e 'using Pkg; Pkg.instantiate(); println("Current directory: $(pwd())"); Pkg.status()'
       # CHECKPINT: I encountered a ERROR: IOError: mkdir("/github/home/.julia"; mode=0o777): permission denied (EACCES)
-      # the Checkout step also failed for the same reason, see https://github.com/actions/checkout/issues/1014
+      # the Checkout step also failed for the same reason, see https://github.com/actions/checkout/issues/1014 and https://github.com/actions/checkout/issues/956
       - name: Checkout
         uses: actions/checkout@v3
       - name: Julia run at checked out directory
         run: julia --project=@. -e 'show(pwd())'
+      - name: Check available kernels
+        run: |
+          jupyter kernelspec list
+          jupyter --paths
       - name: Quarto render
         run: |
           quarto render hello/hello.qmd
