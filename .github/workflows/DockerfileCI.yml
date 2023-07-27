@@ -1,4 +1,4 @@
-name: QuartoDockerGoGoGO
+name: QuartoDockerGoGo
 
 on: [push]
 
