@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: okatsn/my-quarto-space
-      options: --user root
+      options: --user root # in response to the ERROR: IOError: mkdir("/github/home/.julia"; mode=0o777): permission denied (EACCES)
+      # the Checkout step also failed for the same reason, see https://github.com/actions/checkout/issues/1014 and https://github.com/actions/checkout/issues/956
     name: A job to say hello
     steps:
       - name: Julia run at startup directory
@@ -21,8 +22,6 @@ jobs:
       - name: Make IJulia available for quarto
         run: |
           julia --project=@. -e 'using Pkg; Pkg.instantiate(); println("Current directory: $(pwd())"); Pkg.status()'
-      # CHECKPINT: I encountered a ERROR: IOError: mkdir("/github/home/.julia"; mode=0o777): permission denied (EACCES)
-      # the Checkout step also failed for the same reason, see https://github.com/actions/checkout/issues/1014 and https://github.com/actions/checkout/issues/956
       - name: Checkout
         uses: actions/checkout@v3
       - name: Julia run at checked out directory
@@ -35,3 +34,5 @@ jobs:
         run: |
           quarto render hello/hello.qmd
           ls -la hello
+      # CHECKPINT: ERROR: Jupyter kernel 'julia-1.9' not found
+      # https://github.com/JuliaLang/IJulia.jl/issues/1062
