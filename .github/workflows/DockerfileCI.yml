@@ -11,15 +11,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Hello world action step
         id: hello
-        uses: okatsn/QuartoDockerfileCI
+        uses: okatsn/in-my-quarto-space@main
         # See https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action#example-using-a-public-action
-        with:
-          who-to-greet: "Mona the Octocat"
       # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
-      - name: instantiate julia
-        run: julia --project=@. -e 'using Pkg; Pkg.instantiate();'
+      - name: Julia run
+        run: julia --project=@. -e 'pwd()'
       - name: Quarto render
         run: |
           echo "quarto rendering..."
