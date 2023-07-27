@@ -5,17 +5,20 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    container: okatsn/my-quarto-space # https://yonatankra.com/2-ways-to-use-your-docker-image-in-github-actions/
+    container:
+      image: okatsn/my-quarto-space # https://yonatankra.com/2-ways-to-use-your-docker-image-in-github-actions/
+      options: --user root
     name: A job to say hello
     steps:
-      # - name: Make IJulia available for quarto
-      #   run: |
-      #     julia --project=@. -e 'using Pkg; Pkg.instantiate(); println("Current directory: $(pwd())"); Pkg.status()'
-      # # I encountered a ERROR: IOError: mkdir("/github/home/.julia"; mode=0o777): permission denied (EACCES)
       - name: Julia run at startup directory
         run: |
           julia --project=@. -e 'show(pwd())'
           ls -la
+      - name: Make IJulia available for quarto
+        run: |
+          julia --project=@. -e 'using Pkg; Pkg.instantiate(); println("Current directory: $(pwd())"); Pkg.status()'
+      # CHECKPINT: I encountered a ERROR: IOError: mkdir("/github/home/.julia"; mode=0o777): permission denied (EACCES)
+      # the Checkout step also failed for the same reason, see https://github.com/actions/checkout/issues/1014
       - name: Checkout
         uses: actions/checkout@v3
       - name: Julia run at checked out directory
