@@ -4,7 +4,8 @@ on: [push]
 
 # See [Running jobs in a container](https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container) and
 # [2 Ways to Use Your Own Docker Image in Github Actions](https://yonatankra.com/2-ways-to-use-your-docker-image-in-github-actions/)
-
+#
+# Also see (Not used in this script) https://aschmelyun.com/blog/using-docker-run-inside-of-github-actions/ and https://docs.docker.com/build/ci/github-actions/
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
