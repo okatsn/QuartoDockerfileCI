@@ -7,8 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Hello world action step
         id: hello
         uses: okatsn/in-my-quarto-space@main
@@ -16,6 +14,8 @@ jobs:
       # Use the output from the `hello` step
       - name: Julia run
         run: julia --project=@. -e 'pwd()'
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Quarto render
         run: |
           echo "quarto rendering..."
