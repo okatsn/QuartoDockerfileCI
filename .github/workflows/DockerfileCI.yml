@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: okatsn/in-my-quarto-space@v1
+        uses: okatsn/in-my-quarto-space@main
         # See https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action#example-using-a-public-action
       # Use the output from the `hello` step
       - name: Julia run
